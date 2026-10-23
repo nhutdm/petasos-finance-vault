@@ -1,5 +1,7 @@
 # petasos-finance-vault
 
+[![AgentShield Security](https://merx.help/badge/A+.svg)](https://merx.help/shield)
+
 A Hermes Agent skill for running a household-finance vault in Obsidian on a
 ledger architecture:
 
