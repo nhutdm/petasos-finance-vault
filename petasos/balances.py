@@ -31,17 +31,19 @@ def recompute_totals(balances) -> dict:
     mortgage = sum(a.get('balance', 0) for a in accounts.values()
                    if a.get('kind') == 'mortgage')
     loan = sum(a.get('balance', 0) for a in accounts.values() if a.get('kind') == 'loan')
-    cc = sum(a.get('outstanding', 0) for a in accounts.values() if a.get('kind') == 'cc')
+    cc = sum(a.get('outstanding', 0) for a in accounts.values()
+             if a.get('kind') in ('cc', 'credit'))
     assets = bank + cash + deposit + fund + property_
     debts = mortgage + loan + cc
     balances.setdefault('snapshot_totals', {}).update({
         'bank_total': bank,
         'cash_total': cash,
-        'deposit_total': deposit,
-        'fund_total': fund,
+        'deposits_total': deposit,
+        'funds_total': fund,
         'property_total': property_,
         'assets_total': assets,
-        'debt_total': debts,
+        'cc_outstanding_total': cc,
+        'debts_total': debts,
         'net_worth': assets - debts,
         'liquid_total': bank + cash,
     })

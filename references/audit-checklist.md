@@ -29,6 +29,11 @@ reference notes (Debts Detail payment-history chain, Assets Detail tables);
 loan balances must equal the note's latest `balance after` row. Fix via a
 scratch script asserting a unique source anchor, then re-run gates and
 confirm the NW moved by exactly the delta.
+Component-gate signature (found 01/11/2026): `net_worth == assets_total` in
+snapshot_totals means `recompute_totals()` wrote debts=0 — it matched credit
+cards by `kind=='cc'` while vault rows use `kind=='credit'` (fixed 01/11:
+`kind in ('cc','credit')` + canonical plural keys incl. `cc_outstanding_total`).
+If it recurs, check `petasos/balances.py` first.
 9. **Header hygiene**: `balances.json` `as_of` can lag account updates —
 refresh it during a review. Reference notes (Assets/Debts Detail) that say
 "live figures in balances.json" may legitimately lag — only the numbers a

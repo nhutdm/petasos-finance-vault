@@ -69,7 +69,7 @@ def derive_totals(accounts):
     property_v = _sum_kind(accounts, ('property',))
     assets = bank + cash + deposits + funds + property_v
     cc_out = sum((a.get('outstanding') or 0) for a in accounts.values()
-                 if a.get('kind') == 'cc')
+                 if a.get('kind') in ('cc', 'credit'))
     debts = _sum_kind(accounts, DEBT_KINDS) + cc_out
     return {
         'bank_total': bank, 'cash_total': cash, 'deposits_total': deposits,

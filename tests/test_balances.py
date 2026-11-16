@@ -120,8 +120,8 @@ class DerivedTotals(unittest.TestCase):
         self.assertEqual(t['bank_total'], 3000)
         self.assertEqual(t['cash_total'], 500)
         self.assertEqual(t['assets_total'], 3000 + 500 + 9000 + 700 + 50000)
-        self.assertEqual(t['debt_total'], 20000 + 3000 + 250)
-        self.assertEqual(t['net_worth'], t['assets_total'] - t['debt_total'])
+        self.assertEqual(t['debts_total'], 20000 + 3000 + 250)
+        self.assertEqual(t['net_worth'], t['assets_total'] - t['debts_total'])
         self.assertEqual(t['liquid_total'], t['bank_total'] + t['cash_total'])
 
     def test_drifted_totals_repaired_by_recompute(self):
@@ -140,7 +140,7 @@ class DerivedTotals(unittest.TestCase):
         b = balances_obj()
         b['accounts']['CC-1']['balance'] = 999999          # cc ignores balance
         recompute_totals(b)
-        self.assertEqual(b['snapshot_totals']['debt_total'], 20000 + 3000 + 250)
+        self.assertEqual(b['snapshot_totals']['debts_total'], 20000 + 3000 + 250)
 
 
 if __name__ == '__main__':

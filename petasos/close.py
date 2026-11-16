@@ -52,7 +52,7 @@ def _monthly_review(month, mtxs, total, today):
           f"month: {month}\n"
           f"frozen_total: {total}\n"
           f"generated: {today.isoformat()}\n"
-          f"generator: _Ledger/monthly_close.py\n"
+          f"generator: petasos-finance-vault/scripts/monthly_close.py\n"
           f"---\n"
           f"\n"
           f"# 📋 Monthly Review — {month} (CLOSED)\n"
